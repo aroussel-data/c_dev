@@ -1,5 +1,7 @@
 
 # Packages
+*.dll
+*.exe
 *.egg
 *.egg-info
 *.pem
