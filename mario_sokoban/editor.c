@@ -18,7 +18,7 @@
 #include "editor.h"
 
 void edit_game(SDL_Renderer *renderer){
-	SDL_Texture *wall = NULL, *box = NULL, *objective = NULL, *mario = NULL;
+	SDL_Texture *wall = NULL, *box = NULL, *objective = NULL, *mario = NULL, *loaded = NULL, *saved = NULL;
 	SDL_Rect position;
 	SDL_Event event;
 	int proceed = 1, i = 0, j = 0, selected_object = WALL, num_mario = 1;
@@ -29,6 +29,8 @@ void edit_game(SDL_Renderer *renderer){
 	box = load_image("sprites/caisse.jpg", renderer);	
 	objective = load_image("sprites/objectif.png", renderer);	
 	mario = load_image("sprites/mario_bas.gif", renderer);
+	loaded = load_image("sprites/loaded.png", renderer);
+	saved = load_image("sprites/saved.png", renderer);
 
 	// load the level into the map_grid 2 dimensional array
 	if (!load_level(map_grid)){
@@ -60,9 +62,17 @@ void edit_game(SDL_Renderer *renderer){
 						break;
 					case SDLK_l:
 						load_level(map_grid);
+						SDL_RenderCopy(renderer, loaded, NULL, NULL);
+						SDL_RenderPresent(renderer);
+						SDL_Delay(500);
+						SDL_RenderClear(renderer);
 						break;
 					case SDLK_s:
-						// save_game();
+						save_level(map_grid);
+						SDL_RenderCopy(renderer, saved, NULL, NULL);
+						SDL_RenderPresent(renderer);
+						SDL_Delay(500);
+						SDL_RenderClear(renderer);
 						break;
 				}
 			case SDL_MOUSEBUTTONDOWN:
@@ -124,4 +134,6 @@ void edit_game(SDL_Renderer *renderer){
 	SDL_DestroyTexture(box);
 	SDL_DestroyTexture(objective);
 	SDL_DestroyTexture(mario);
+	SDL_DestroyTexture(loaded);
+	SDL_DestroyTexture(saved);
 }

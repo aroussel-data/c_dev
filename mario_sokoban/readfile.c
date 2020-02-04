@@ -1,3 +1,11 @@
+/*
+ readfile.c
+ --------
+ - Purpose of this file is to manage the loading and saving of the map_grid 2d array into the level.lvl file.
+ - Loading is done by using fgets() to read the continuous string of ints (0-4) representing different sprites in the level.lvl file into the 2d array map_grid. 
+ - Saving is the inverse of the loading process, we take the contents of map_grid and write them to the level.lvl in a continuous string, e.g. 11400
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -6,8 +14,6 @@
 #include <SDL_image.h>
 #include "readfile.h"
 #include "constants.h"
-
-// this file will read in the levels.lvl file and write the contents to the map grid 2d array.
 
 int load_level(int map_grid[][NB_HEIGHT]){
 	FILE *file = NULL;
@@ -45,5 +51,23 @@ int load_level(int map_grid[][NB_HEIGHT]){
 
 	fclose(file);
 
+	return 1;
+}
+
+int save_level(int map_grid[][NB_HEIGHT]){
+	FILE *file = NULL;
+	int i, j;
+
+	file = fopen("level.lvl", "w");
+	if (file == NULL){
+		return 0;
+	}
+
+	for (i = 0; i < NB_WIDTH; i++){
+		for (j = 0; j < NB_HEIGHT; j++){
+			fprintf(file, "%d", map_grid[j][i]);
+		}
+	}
+	fclose(file);
 	return 1;
 }

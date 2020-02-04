@@ -18,7 +18,7 @@
 
 void play_game(SDL_Renderer *renderer){
 	SDL_Texture *marioFaces[4] = {NULL};
-	SDL_Texture *wall = NULL, *box = NULL, *objective = NULL, *okbox = NULL, *currentMario = NULL;
+	SDL_Texture *wall = NULL, *box = NULL, *objective = NULL, *okbox = NULL, *currentMario = NULL, *win = NULL;
 	SDL_Rect position, playerPosition;
 	SDL_Event event;
 	int proceed = 1, objectivesLeft = 0, i = 0, j = 0;
@@ -29,6 +29,7 @@ void play_game(SDL_Renderer *renderer){
 	box = load_image("sprites/caisse.jpg", renderer);	
 	objective = load_image("sprites/objectif.png", renderer);	
 	okbox = load_image("sprites/caisse_ok.jpg", renderer);
+	win = load_image("sprites/win.png", renderer);
 
 	// each element in the marioFaces array represents mario facing a direction	
 	marioFaces[UP] = load_image("sprites/mario_haut.gif", renderer);	
@@ -119,6 +120,10 @@ void play_game(SDL_Renderer *renderer){
 		}
 		// if there are no objectives left (they've been replaced by OKBOX) then the game is won
 		if (!objectivesLeft){
+			SDL_RenderCopy(renderer, win, NULL, NULL);
+			SDL_RenderPresent(renderer);
+			SDL_Delay(500);
+			SDL_RenderClear(renderer);
 			proceed = 0;
 		}
 
