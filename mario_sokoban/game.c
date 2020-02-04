@@ -1,4 +1,12 @@
-// this will basically house what I had already started putting in the play_game function...
+/*
+ game.c
+ --------
+ - Purpose of this file is to render the game window (option 1 in the game menu) and allow user to play game.
+ - We load the sprite textures into SDL_Textures and we load the level.lvl file into the 2d array map_grid.
+ - User moves mario by using directional keys. 
+ - Once user has moved all boxes onto objectives the game is won. 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -8,36 +16,35 @@
 #include "readfile.h"
 #include "game.h"
 
-// then it should call a readfile function that reads the contents of niveau.lvl into the map grid 2 dimensional array...
-
 void play_game(SDL_Renderer *renderer){
-	// initialise all variables needed	
 	SDL_Texture *marioFaces[4] = {NULL};
 	SDL_Texture *wall = NULL, *box = NULL, *objective = NULL, *okbox = NULL, *currentMario = NULL;
 	SDL_Rect position, playerPosition;
 	SDL_Event event;
 	int proceed = 1, objectivesLeft = 0, i = 0, j = 0;
-	int map_grid[NB_WIDTH][NB_HEIGHT] = {0};
-	
-	// use the load_image function to load in all sprite textures and the 4 mario faces...
+	int map_grid[NB_WIDTH][NB_HEIGHT] = {0};  //2d array representing game screen with 144 squares, i.e. (NB_WIDTH*NB_HEIGHT) or (12*12) squares.
+
+	// load sprites into textures	
 	wall = load_image("sprites/mur.jpg", renderer);	
 	box = load_image("sprites/caisse.jpg", renderer);	
 	objective = load_image("sprites/objectif.png", renderer);	
-	okbox = load_image("sprites/caisse_ok.jpg", renderer);	
+	okbox = load_image("sprites/caisse_ok.jpg", renderer);
+
+	// each element in the marioFaces array represents mario facing a direction	
 	marioFaces[UP] = load_image("sprites/mario_haut.gif", renderer);	
 	marioFaces[DOWN] = load_image("sprites/mario_bas.gif", renderer);	
 	marioFaces[LEFT] = load_image("sprites/mario_gauche.gif", renderer);	
 	marioFaces[RIGHT] = load_image("sprites/mario_droite.gif", renderer);	
 	
-	// set currentMario to be down facing
+	// mario starts the game facing down
 	currentMario = marioFaces[DOWN];
 
-	// load the level into the map grid 2 dimensional array
+	// load the level into the map_grid 2d array
 	if (!load_level(map_grid)){
 		proceed = 0;
 	} 
 
-	// nested for loop to check values of mapgrid[i][j] to set mario starting position and set his starting square to empty.
+	// nested for loop to check values of mapgrid[i][j] and set mario starting position and set his starting square to empty.
 	for (i = 0; i < NB_WIDTH; i++){
 		for (j = 0; j < NB_HEIGHT; j++){
 			if (map_grid[i][j] == MARIO){ 
@@ -62,7 +69,7 @@ void play_game(SDL_Renderer *renderer){
 						break;
 					case SDLK_UP:
 						currentMario = marioFaces[UP];
-						move_player(map_grid, &playerPosition, UP); //makes request to move player in that direction and move_player decides whether it is allowed then overwrites value of playerPosition
+						move_player(map_grid, &playerPosition, UP); //makes request to move player in that direction, move_player() decides whether it is allowed to, if so overwrites value of playerPosition to move player
 						break;
 					case SDLK_DOWN:
 						currentMario = marioFaces[DOWN];
@@ -120,6 +127,12 @@ void play_game(SDL_Renderer *renderer){
 		SDL_RenderCopy(renderer, currentMario, NULL, &position);
 		SDL_RenderPresent(renderer);
 	}
+	SDL_DestroyTexture(wall);
+	SDL_DestroyTexture(box);
+	SDL_DestroyTexture(okbox);
+	SDL_DestroyTexture(objective);
+	SDL_DestroyTexture(currentMario);
+	SDL_DestroyTexture(marioFaces);
 }
 
 void move_player(int map_grid[][NB_HEIGHT], SDL_Rect *playerPosition, int direction){

@@ -48,6 +48,7 @@ connection_parameters.py
 # Installer logs
 pip-log.txt
 
+sprites/
 other/
 env/
 venv/

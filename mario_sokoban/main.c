@@ -1,3 +1,10 @@
+/*
+ main.c
+ --------
+ - Purpose of this file is to initialise the SDL Window, Renderer and main menu.
+ - User presses 1 to play game and 2 to enter into level editor.
+ - User presses Esc or [X] to quit game.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -28,10 +35,9 @@ int main(int argc, char *argv[]){
 	setWindowColor(renderer, black);
 
 	// load menu image	
-	menu = load_image("sprites/menu.jpg", renderer);	
+	menu = load_image("sprites/menu_english.jpg", renderer);	
 
 	// create main loop to represent game menu
-	
 	while(proceed){
 		SDL_WaitEvent(&event);
 		switch(event.type){ 
@@ -49,6 +55,7 @@ int main(int argc, char *argv[]){
 						break;
 					case SDLK_KP_2:
 						//player chooses to edit level
+						edit_game(renderer);
 						break;
 				}
 		}
