@@ -7,7 +7,6 @@
 #define TABLE_LENGTH 10
 
 int main(void) {
-	// my linked list is basically an array of pointers to structs
 	Student *students[10] = {NULL};
 
 	Student student1 = {"George R", 29, 80}, student2 = {"Gale P", 26, 90}, student3 = {"John T", 59, 80};
