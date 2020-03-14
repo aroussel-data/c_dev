@@ -17,6 +17,19 @@ void	ft_sort_int_tab(int *tab, int size)
 	
 	while (tab[size-1] < tab[0])
 	{
+		// we have this [4, 3, 2, 1]
+		// we want this [1, 2, 3, 4]
+		// while value @ pos 0 > value @ pos 3 
+		// compare 4 -> 3 : is 4 > 3? If so, set pos 0 to 3 and pos 0 + 1 to 4...
+		// i++
+		// move onto i = 1
+		// is 3 > 2? If so, set pos 1 to 2 and pos 2 to 3
+		// move onto i = 2
+		// is 2 > 1? If so, set pos 2 to 1 and pos 3 to 2
+		//
+		// at this point we have something like: [3, 4, 1, 2] , so we need to do multiple passes...
+		
+		
 		if (tab[i] > tab[i+1])
 		{
 			//need to swap current -> next so that the smallest of the two is in the leftmost position.
