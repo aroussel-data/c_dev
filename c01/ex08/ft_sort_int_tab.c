@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:05:12 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/16 18:14:02 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/16 18:16:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	ft_sort_int_tab(int *tab, int size)
 	
 	i = 0;
 	temp = 0;
-
 	while (i < (size-1)){
-
 		t=0;
 		while (t < (size-1))
 		{
@@ -30,7 +28,7 @@ void	ft_sort_int_tab(int *tab, int size)
 				tab[t] = tab[t+1];
 				tab[t+1] = temp;
 			}
-			t = (t + 1) % size;
+			t++;
 		}
 		i++;
 	}
