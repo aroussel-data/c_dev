@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 09:34:58 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/18 13:20:31 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/18 18:34:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		i++;
 	}
 	dest[i] = '\0';
-	return i;}
+	return i;
+}
