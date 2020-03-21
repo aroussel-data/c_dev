@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 11:03:00 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/20 19:54:21 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/21 09:26:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putnbr(int nb)
 	if (nb < 0)
 	{
 		ft_putchar('-');
-		u_nb = (nb - nb) - nb;
+		u_nb = (unsigned int)((nb - nb) - nb);
 		ft_putnbr(u_nb / 10);
 		ft_putchar((u_nb % 10) + '0');
 	}
@@ -42,6 +42,6 @@ void	ft_putnbr(int nb)
 
 int	main(void)
 {
-	int a = -42;
+	int a = -2147483648; 
 	ft_putnbr(a);
 }
