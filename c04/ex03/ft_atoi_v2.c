@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 19:29:52 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/21 11:14:51 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/21 11:15:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,18 @@ int	ft_atoi(char *str)
 		{
 			num_dash++;
 		}
-
-		
-
 		if (str[i] >= 48 && str[i] <= 57)
 		{
 			result = result * 10 + str[i] - '0';	
 		}
-
 		if (!(str[i] >= 48 && str[i] <= 57) && result != 0)
 		{
 			return result_checker(&result, &num_dash);
 		}
-		
 		if (!(str[i] == 45 || str[i] == 43 || str[i]  == 32 || (str[i] >= 48 && str[i] <= 57)))
 		{
 			return 0;
-			//printf("%c\n", str[i]);
 		}
-		
 		i++;
 	}
 	return result_checker(&result, &num_dash);
