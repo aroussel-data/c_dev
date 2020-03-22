@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:17:10 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/22 17:12:39 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/22 17:14:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	ft_base_check(char *str)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	char result[ft_strlen(base)];
 	unsigned int n;
 	
 	if (ft_strlen(base) < 2 || ft_base_check(base))
