@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 09:53:08 by marvin            #+#    #+#             */
-/*   Updated: 2020/04/03 11:08:30 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/03 12:33:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	*ft_range(int min, int max)
 	if (min >= max)
 		return NULL;
 
-	my_array = malloc((max - 1) * 4);
+	my_array = malloc((max - min) * 4);
 	while (min < max)
 	{
 		my_array[i] = min;
@@ -35,7 +35,7 @@ int	main(void)
 {
 	// can only use malloc, so create an empty int array with malloc of right size
 	// how do we computer the size needed between two ints?
-	int *test_array = ft_range(0, 9);
+	int *test_array = ft_range(-5, 5);
 	printf("%d\n", test_array[0]);
 	printf("%d\n", test_array[1]);
 	printf("%d\n", test_array[2]);
