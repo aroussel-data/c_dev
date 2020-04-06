@@ -6,11 +6,12 @@
 /*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 11:11:05 by marvin            #+#    #+#             */
-/*   Updated: 2020/04/05 15:30:37 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/06 11:55:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int	ft_strlen(char *str)
 {
@@ -27,16 +28,38 @@ int	ft_strlen(char *str)
 	return result;
 }
 
+int	ft_arraysize(int size, char **strs)
+{
+	int i;
+	int result;
+
+	i = 0;
+	result = 0;
+	while (i < size)
+	{
+		result = result + ft_strlen(strs[i]) + 1;
+		i++;
+	}
+	return result;
+}
+
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	int i;
 	int j;
 	int res_length;
-	char res[255] = "";
-	char *res_p;
+	int res_size = ft_arraysize(size, strs);
+        char *res;
 	
 	i = 0;
-	res_length = ft_strlen(res);
+	if (size == 0)
+	{
+		res = (char *)malloc(1);
+		res[0] = '\0';
+		return res;
+	}
+	res = (char *)malloc(res_size);
+	res_length = 0;
 	while (i < size)  // iterate over each string in the array of strings
 	{
 		j = 0;
@@ -57,10 +80,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		res_length = ft_strlen(res);
 		i++;
 	}
-
-	printf("%s\n", res);
-	res_p = res;
-	return res_p;
+	return res;
 }
 
 int main(void)
